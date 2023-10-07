@@ -1,7 +1,38 @@
+const initialContributor = [
+  {
+    id: 118836,
+    name: "Sola",
+    image: "https://i.pravatar.cc/48?u=118836",
+    Amount: 20000,
+  },
+  {
+    id: 933372,
+    name: "Sarah",
+    image: "https://i.pravatar.cc/48?u=933372",
+    Amount: 20000,
+  },
+  {
+    id: 499476,
+    name: "Ibrahim",
+    image: "https://i.pravatar.cc/48?u=499476",
+    Amount: 20000,
+  },
+];
+
+
+
+
+
+
 function App() {
   return(
-     <div>
+     <div className="app">
       <Admin />
+      <ContributorList />
+      <Contributor />
+      <FormAddContributor />
+      <FormShareContribution />
+      
      </div>
   )
 }
@@ -28,6 +59,40 @@ const Admin =() =>{
 
     </div>
   )
+}
+
+const ContributorList=() =>{
+  return(
+    <div className="contriblist">
+      <ul>
+        {Contributors.map((contributor) =>(
+          <Contributor   key={contributor.id} />
+         
+
+        ))}
+      </ul>
+
+      
+    
+    </div>
+  )
+}
+
+
+const Contributor=() =>{
+
+}
+
+
+
+const FormAddContributor=() =>{
+
+}
+
+
+
+const FormShareContribution=() =>{
+
 }
 
 
