@@ -1,21 +1,21 @@
-const initialContributor = [
+const initialContributors = [
   {
     id: 118836,
-    name: "Sola",
+    name: "Ade",
     image: "https://i.pravatar.cc/48?u=118836",
-    Amount: 20000,
+    contribution: 20000,
   },
   {
     id: 933372,
-    name: "Sarah",
+    name: "Sjames",
     image: "https://i.pravatar.cc/48?u=933372",
-    Amount: 20000,
+    contribution: 20000,
   },
   {
     id: 499476,
-    name: "Ibrahim",
+    name: "Bisola",
     image: "https://i.pravatar.cc/48?u=499476",
-    Amount: 20000,
+    contribution: 20000,
   },
 ];
 
@@ -27,12 +27,12 @@ const initialContributor = [
 function App() {
   return(
      <div className="app">
+      <div className="sidebar">
       <Admin />
       <ContributorList />
       <Contributor />
-      <FormAddContributor />
-      <FormShareContribution />
-      
+     
+      </div>
      </div>
   )
 }
@@ -61,37 +61,30 @@ const Admin =() =>{
   )
 }
 
-const ContributorList=() =>{
+
+
+function ContributorList({ contributors }) {
+  contributors = initialContributors;
+ 
   return(
-    <div className="contriblist">
-      <ul>
-        {Contributors.map((contributor) =>(
-          <Contributor   key={contributor.id} />
-         
+  <ul>
+    {contributors.map((contributor) =>(
+      <Contributor contributor={contributor} key={contributor.id} />
 
-        ))}
-      </ul>
+    ))}
+  </ul>
 
-      
-    
-    </div>
+ );
+
+}
+
+function Contributor({ contributor }) {
+  return(
+    <li>
+      <img src={contributor.image} alt={contributor.name} />
+      <h3>{contributor.name}</h3>
+    </li>
   )
-}
-
-
-const Contributor=() =>{
-
-}
-
-
-
-const FormAddContributor=() =>{
-
-}
-
-
-
-const FormShareContribution=() =>{
 
 }
 
@@ -100,17 +93,4 @@ const FormShareContribution=() =>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-export default App;
+ export default App;
