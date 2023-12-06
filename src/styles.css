@@ -50,43 +50,93 @@ a:hover {
   
 }
 
+.button {
+  width: 7rem;
+  position: relative;
+  top: -2.5rem  ;
+  left: 15rem ;
+  border-radius: .7rem;
+  padding: .8rem 1.2rem;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  color: var(--color-lightest);
+  background-color: var(--color-dark)
+  
+  
+  
+ 
+}
 
-.admin {
-  display: flex;
-  flex-direction: column;
-  width: 500px ;
-  height: 200px;
-  margin-left: 15px;
-  background-color: #f5efef;
-  border: 1px solid black;
-  border-radius: 10px;
+
+
+
+.admin-form {
+  display: grid;
+  font-size: 1.5rem;
+  padding: .1rem 1rem ;
+  width: 35rem ;
+  height: 15rem;
+  background-color: var(--color-lightest);
+  border: none;
+  border-radius: 1rem;
+  position: absolute;
+  top: 3%;
+  left: 60%;
+  transform: translate(-10% -60%);
+
   
 }
 
+ .admin-form input {
+  position: relative;
+  top: -3rem;
+  left: 12rem;
+  font-family: inherit;
+  color: inherit;
+  font-size: 1.3rem;
+  padding: .5rem;
+  text-align: center;
+  border: 1px solid var(--color-light);
+  border-radius: 4px;
+  transition: 0.3s;
+}
 
-
- #username {
-  margin-bottom: 20px;
-  width: 250px;
-  height: 25px;
+.admin-form input {
+  width: 20rem;
+  height: 1.5rem;
+  margin-top: .6rem;
+  margin-left: .3rem;
+  border-radius: .6rem;
 
 }
 
-#password {
-  width: 250px;
-  height: 25px;
-  margin-bottom: 15px;
-
-
+.admin-form input:focus {
+  outline: none;
+  border: 1px solid var(--color-dark);
 }
 
-#login {
+.admin-form label {
+  margin-left: 5rem;
+}
+
+
+
+.admin-form h3 {
+  margin-top: .1rem;
+}
+
+
+
+.admin-form button {
   font-size: medium;
   font-weight: 700;
-  width: 70px;
-  height: 30px;
-  display: block;
-  margin-left: 23em;
+  width: 80px;
+  height: 40px;
+  display: inline-block;
+  margin-left: 9rem;
+  margin-top: 0;
 }
 
 .sidebar ul {
@@ -108,3 +158,172 @@ a:hover {
   border-radius: 7px;
   transition: 0.5s;
 }
+
+.sidebar li:hover {
+  background-color: var(--color-lightest);
+}
+
+.sidebar li img {
+  border-radius: 50%;
+  width: 100%;
+  grid-row: span 2;
+}
+
+.sidebar li h3 {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.paid {
+  color: green;
+  position: relative;
+  top: 1.5rem;
+  right: 7rem;
+  display: inline;
+  font-size: 1rem;
+}
+
+
+.unpaid {
+  color: red;
+  position: relative;
+  top: 1.5rem;
+  right: 7rem;
+  display: inline;
+  font-size: 1rem;
+}
+
+ .sidebar li .button {
+  grid-row: span 2;
+  grid-column: 3;
+  
+  
+
+}
+
+.sidebar> .button {
+  font-size: 1.1rem;
+  float: right;
+  margin-right: 1rem;
+  margin-top: 5rem;
+  width: 12rem;
+}
+
+
+form {
+  display:grid;
+  gap: .2rem;
+  font-size: 1.6rem;
+
+}
+
+.form-add-contributor {
+  margin-left: 4rem;
+  margin-top: 2rem;
+  padding: 1.2rem;
+  background-color: var(--color-lightest);
+  color: black;
+  width: 35rem;
+  border-radius: 2rem;
+ 
+ 
+
+
+}
+
+.form-add-contributor input {
+  display: grid;
+  height: 2.2rem;
+  gap: 10rem;
+  align-items: left;
+  position: relative;
+  left: 16rem;
+  top: -2rem;
+  width: 17rem;
+  transition: 0.3s;
+  
+  
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid var(--color-dark);
+}
+
+.form-add-contributor> .button {
+  transition: 0.3s;
+  font-size: 1.2rem;
+  text-align: center;
+  position: relative;
+  top: 1rem;
+  left:19rem;
+  width: 12rem;
+  background-color: var(--color-dark);
+  color: var(--color-lightest);
+  
+
+}
+
+.form-award-esusu {
+padding: 1.2rem 4rem;
+background-color:var(--color-lightest) ;
+position: absolute;
+top: 25rem;
+right: 5rem;
+display: grid;
+gap: .4rem;
+font-size: 1.6rem;
+background-color: var(--color-lightest);
+color: black;
+width: 35rem;
+border-radius: 2rem;
+ 
+}
+
+.form-award-esusu button {
+  position: relative;
+  top: .2rem;
+  left: 25rem;
+  width: 10rem;
+
+}
+
+.form-award-esusu input {
+  width: 17rem;
+  position: relative;
+  left: 20rem;
+  top: -2.9rem;
+  padding: .5rem;
+  text-align: center;
+  border: 1px solid var(--color-light);
+  border-radius: 4px;
+  transition: 0.3s;
+
+}
+
+.form-award-esusu select {
+  width: 18rem;
+  height: 2.2rem;
+  padding: .5rem;
+  position: relative;
+  left: 20rem;
+  top: -2.9rem;
+
+}
+
+.form-award-esusu label {
+   margin-top: -1rem;
+ 
+}
+
+
+
+
+
+.form-award-esusu input:focus {
+  
+    outline: none;
+    border: 1px solid var(--color-dark);
+  }
+
+
