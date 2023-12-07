@@ -29,13 +29,29 @@ const Button = ({children, onClick}) => {
   return <button className="button" onClick={onClick}>{children}</button>
    
 }
+
+
  
   function App() {
+
+   
    
     const [showAddContributor, setShowAddContributor] = useState(false);
 
+    const [showLogin, setShowLogin] = useState(false);
+
+    const [showFormAwardEsusu, setShowFormAwardEsusu] = useState(false);
+
+    
+    
+   
+    
     const handleshowAddContributor =() =>{
       setShowAddContributor(show => !show)
+    }
+
+    const handleShowLogin =() => {
+      setShowLogin(show => !show)
     }
  
     return (
@@ -44,21 +60,28 @@ const Button = ({children, onClick}) => {
         
         <ContributorList contributors={initialContributors} />
         {showAddContributor && <FormAddContributor />}
-         <Button onClick={handleshowAddContributor}> Add Contributor</Button> 
+         <Button onClick={handleshowAddContributor}> 
+         { showAddContributor ? "close" : "Add Contributor"}</Button> 
        
 
       
        
 
       </div>
-        <Admin />
+      
+       {showLogin && <Login />}
+
+       <button onClick={handleShowLogin} className="login">{ showLogin ? "X" : "Click here to login"}</button>
         <FormAwardEsusu  />
     </div>
   );
 }
+
+const Login = () => {
  
-const Admin = () => {
+
   return (
+    
     <div className="admin-form">
       <h3>Admin area, Welcome Contributor!</h3>
 
@@ -67,8 +90,10 @@ const Admin = () => {
  
       <label password> Password{' '}</label>
       <input type="password" id="password" placeholder="enter password" />
- 
+      
       <Button>Login</Button>
+      
+     
     </div>
   );
 };

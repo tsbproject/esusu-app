@@ -326,4 +326,28 @@ border-radius: 2rem;
     border: 1px solid var(--color-dark);
   }
 
+  .login {
+    font-size: 1.6rem;
+    border: none;
+    background-image:linear-gradient(to right --color-light, --color-dark); 
+    background-clip: text;
+    -webkit-background-clip: text;
+    color:var(--color-dark);
+    letter-spacing: .2rem;
+    transition: all .2s;
+    position: relative;
+    top: .2.7rem;
+    left: 48rem;
+
+   
+  }
+
+  .login:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1); 
+    text-shadow: .5rem 1rem 2rem rgba(--color-dark, .2);
+ }
+
+ 
+
+
 
