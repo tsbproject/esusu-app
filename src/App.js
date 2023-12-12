@@ -38,9 +38,14 @@ const Button = ({children, onClick}) => {
    
     const [showAddContributor, setShowAddContributor] = useState(false);
 
-    const [showLogin, setShowLogin] = useState(false);
+    const [showAdminLogin, setShowAdminLogin] = useState(false);
 
-    const [showFormAwardEsusu, setShowFormAwardEsusu] = useState(false);
+    const [selectedContributor, setSelectedContributor] = useState(null);
+
+    const [contributors, setContributors] = useState(initialContributors);
+    
+    // const [showNewContributor, setShowNewContributor] =useState()
+   
 
     
     
@@ -48,18 +53,35 @@ const Button = ({children, onClick}) => {
     
     const handleshowAddContributor =() =>{
       setShowAddContributor(show => !show)
+      
     }
 
-    const handleShowLogin =() => {
-      setShowLogin(show => !show)
+    const handleShowAdminLogin =() => {
+      setShowAdminLogin(show => !show)
     }
+
+    const handleAddContributors =(contributor) => {
+       setContributors((contributors) => [...contributors, contributor]);
+       setShowAddContributor(false)     /*hide form add contributor after addition*/
+    }
+
+    const handSelection =(contributor) =>{
+      setSelectedContributor((cur) =>(cur?.id === contributor.id ? null : contributor));
+      
+    }
+
+    
  
     return (
     <div className="app">
       <div className="sidebar">
         
-        <ContributorList contributors={initialContributors} />
-        {showAddContributor && <FormAddContributor />}
+         <ContributorList contributors={contributors}
+         onSelection={handSelection} 
+         selectedContributor={selectedContributor} />
+        
+        {showAddContributor && <FormAddContributor onAddContributor={handleAddContributors} />}
+         
          <Button onClick={handleshowAddContributor}> 
          { showAddContributor ? "close" : "Add Contributor"}</Button> 
        
@@ -68,16 +90,19 @@ const Button = ({children, onClick}) => {
        
 
       </div>
+        <Contributor />
       
-       {showLogin && <Login />}
+       {showAdminLogin && <AdminLogin />}
 
-       <button onClick={handleShowLogin} className="login">{ showLogin ? "X" : "Click here to login"}</button>
-        <FormAwardEsusu  />
+       <button onClick={handleShowAdminLogin} className="login">{ showAdminLogin ? "X" : "Click here to login"}</button>
+        
+      { selectedContributor && <FormAwardEsusu selectedContributor={selectedContributor}  />}
+
     </div>
   );
 }
 
-const Login = () => {
+const AdminLogin = () => {
  
 
   return (
@@ -98,19 +123,28 @@ const Login = () => {
   );
 };
  
-function ContributorList({ contributors }) {
+function ContributorList({ contributors, onSelection, selectedContributor}) {
+ 
+  
+  
+  
   return (
     <ul>
       {contributors.map((contributor) => (
-        <Contributor contributor={contributor} key={contributor.id} />
+        <Contributor 
+        contributor={contributor} 
+        key={contributor.id} 
+        onSelection={onSelection}
+        selectedContributor={selectedContributor} />
       ))}
     </ul>
   );
 }
  
-function Contributor({ contributor}) {
+function Contributor({ contributor, onSelection,selectedContributor}) {
+  const isSelected = selectedContributor?.id === contributor.id;
   return (
-    <li>
+    <li className={isSelected ? "selected" : "" }>
       <img src={contributor.image} alt={contributor.name} />
       <h3>{contributor.name}</h3>
 
@@ -132,7 +166,7 @@ function Contributor({ contributor}) {
 
     
       
-      <Button>Select</Button>  
+      <Button onClick={() =>onSelection(contributor)}>PayEsusu</Button>  
         
     </li>
   );
@@ -142,29 +176,67 @@ function Contributor({ contributor}) {
 
 
 
-const FormAddContributor = () => {
-  return(
-    <form className="form-add-contributor">
+
+  
+const FormAddContributor = ( {onAddContributor} ) => {
+  
+  const [name, setName] = useState("");
+  const [image, setImage] = useState("https://i.pravatar.cc/48");
+
+
+  const handleSubmit=(e) =>{
+    e.preventDefault();
+
+
+  if(!name || !image) return;
+  const id = crypto.randomUUID();
+  
+  const newContributor = {
+    id,
+    name,
+    image:`${image}?=${id}`,
+    contribution: 0,
+
+   }
+
+   onAddContributor(newContributor);
+   
+   setName("");
+   setImage("https://i.pravatar.cc/48");
+  
+  }
+
+
+  
+  
+
+return(
+
+   
+    
+    <form className="form-add-contributor" onSubmit={handleSubmit}>
       <label>👨‍❤️‍💋‍👨 Contributor name
-      <input type="text" />
+      <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
       </label>
       
 
 
       <label>🌆image-url
-      <input type="text" />
+      <input type="text" value={image} onChange={(e) => setImage(e.target.value)} />
       </label>
       
        
       <Button>Add</Button>
     </form>
   )
+
+  
   }
 
 
-  const FormAwardEsusu = () => {
+  const FormAwardEsusu = ( {selectedContributor} ) => {
      return <form className="form-award-esusu">
-      <h3> Award Esusu to X</h3>
+      <h3> Award Esusu to {selectedContributor.name}</h3>
 
       
       
@@ -175,13 +247,13 @@ const FormAddContributor = () => {
       
      
 
-      <label>💰X Esusu </label>
+      <label>💰{selectedContributor.name} Esusu </label>
       <input type="text" />
       
 
        
       <label>💰Total Esusu </label>
-      <input type="text" />
+      <input type="text" disabled />
       
 
 
