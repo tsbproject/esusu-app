@@ -141,37 +141,26 @@ function ContributorList({ contributors, onSelection, selectedContributor}) {
   );
 }
  
-function Contributor({ contributor, onSelection,selectedContributor}) {
+function Contributor({ contributor, onSelection, selectedContributor }) {
   const isSelected = selectedContributor?.id === contributor.id;
+ 
   return (
-    <li className={isSelected ? "selected" : "" }>
+    <li className={isSelected ? "selected" : ""}>
       <img src={contributor.image} alt={contributor.name} />
       <h3>{contributor.name}</h3>
-
+ 
       {contributor.contribution === 20000 && (
-          <p className="paid"> You paid N{contribution} contribution.
-          </p>
-          
-   
+        <p className="paid">You paid N{contribution} contribution.</p>
       )}
-
-
-
-       {contributor.contribution < 20000 &&(
-          <p className="unpaid"> You owe N{contribution} contribution.
-          </p>
-
-        
+ 
+      {contributor.contribution < 20000 && (
+        <p className="unpaid">You owe N{contribution} contribution.</p>
       )}
-
-    
-      
-      <Button onClick={() =>onSelection(contributor)}>PayEsusu</Button>  
-        
+ 
+      <Button onClick={() => onSelection(contributor)}>PayEsusu</Button>
     </li>
   );
 }
-
 
 
 
